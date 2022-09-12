@@ -64,9 +64,9 @@ def watermarking():
 
     draw = ImageDraw.Draw(img)
     text = "copyright© 2022 Dista Reza"
-    font = ImageFont.truetype("arial.ttf", 36)
-    textwidth, textheight = draw.textsize(text, font)
-    text_pos =  (margin, img_height -textheight - margin)
+    font = ImageFont.truetype("arial", 36)
+    text_x, text_y, text_width, text_height = font.getbbox(text)
+    text_pos = ( margin, img_height - text_height - margin)
     text_color = (255,255, 255)
     draw.text(text_pos, text, text_color, font)
 
