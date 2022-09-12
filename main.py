@@ -3,7 +3,7 @@ import tkinter
 from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
-from PIL import Image, ImageTk, PSDraw
+from PIL import Image, ImageTk, ImageDraw, ImageFont
 
 window = tkinter.Tk()
 window.title("Python GUI Program")
@@ -52,15 +52,23 @@ def showImage(img):
 
 def watermarking():
     global img
+    img_width, img_height = img.size
+
     logo_img_path = "C:/tmp/ItIsMeDistaReza-circle.png"
     logo_img = Image.open(logo_img_path)
+    margin = 5
+    logo_img.thumbnail(size=( img_width/10, img_height/10 )) # logo 10% of the image
 
-    img_width = img.size[0]
-    img_height = img.size[1]
-    logo_width = logo_img.size[0]
-    logo_height = logo_img.size[1]
+    logo_width, logo_height = logo_img.size
+    img.paste(logo_img, (img_width-logo_width-margin, img_height-logo_height-margin))
 
-    img.paste(logo_img, (img_width-logo_width, img_height-logo_height))
+    draw = ImageDraw.Draw(img)
+    text = "copyright© 2022 Dista Reza"
+    font = ImageFont.truetype("arial.ttf", 36)
+    textwidth, textheight = draw.textsize(text, font)
+    text_pos =  (margin, img_height -textheight - margin)
+    text_color = (255,255, 255)
+    draw.text(text_pos, text, text_color, font)
 
     showImage(img)
 
