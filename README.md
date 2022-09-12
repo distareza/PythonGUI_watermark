@@ -16,4 +16,4 @@ and some Googling.
 
 Questions for this assignm
 
-![alt text](Screenshot 2022-09-12 081523.png)
+![alt text](https://github.com/distareza/PythonGUI_watermark/Screenshot20220912081523.png)
